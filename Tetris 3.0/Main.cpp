@@ -16,7 +16,8 @@ const uint16_t boardLength = width*pixelSize; //width = 10, defined in GameBoard
 const uint16_t boardHeight = height*pixelSize; //height = 24, defined in GameBoard
 
 
-int main()
+// MUST USE WinMain() forw indow app
+int WinMain()
 {
 
 	RenderWindow window(VideoMode(boardHeight, boardHeight), gameName);
@@ -38,7 +39,7 @@ int main()
 	{
 		GameBoard gb(&window, boardMusicFileName);
 		gb.loadTetrinoTexture("squares.bmp");
-		while (!gb.isGameOver())
+		while (!gb.isGameOver() && window.isOpen())
 		{
 			//check events
 
@@ -74,4 +75,5 @@ int main()
 		menu.gameOver("GameOver.jpg");
 		window.close();
 	}
+	return 0;
 }
